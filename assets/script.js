@@ -37,25 +37,33 @@ let quesArray = [
    }
 ];
 
+/*This is to create the timer for the quiz*/
+var count = 150;
+var timer = setInterval(function() {
+  console.log(count);
+  count--;
+  if(count === 0) {
+    stopInterval()
+  }
+}, 1000);
 
- var timeLeft = 120;
+var stopInterval = function() {
+  console.log('time is up!');
+  clearInterval(timer);
+}
 
 //variables to refrence DOM elements
-var pageContainer = document.getElementById("page-container"); 
+var pageContainerEl = document.getElementById("page-container"); 
 
 var startQuizEl = document.getElementsByClassName("start-quiz");
 
-var quesContainer = document.getElementById("ques-container");
+var quesContainerEl = document.getElementById("ques-container");
 
-var question = document.getElementById("question");
+var questionEl = document.getElementById("question");
 
-var choices = document.getElementById("choices");
+var choicesEl = document.getElementById("choices");
 
 var paragraphEl = document.createElement("p")
-
-paragraphEl.textContent = " Welcome to the fullstack coding quiz where you can put your knowledge to the test by answering these questions."
-
-
 
 /* function for starting quiz:
     - hide the start-quiz section
@@ -63,25 +71,42 @@ paragraphEl.textContent = " Welcome to the fullstack coding quiz where you can p
     - start the timer
     - call to function to get question
 */
+/*hideHomePage will get rid of the h2, p, and button when start button is clicked.*/
+function hideHomePage(){ 
+   document.querySelector("#home-page").style.display="none"
+};
+
+/*quesRendered shows the first question when the start button is clicked.*/
 function quesRendered(){
    var questions = document.createElement("h2")
    questions.textContent = quesArray[0].question
    document.querySelector(".ques-container").append(questions)
-}
-
-function hideHomePage(){
-   document.querySelector("#home-page").style.display="none"
 };
+
+/*optRendered shows the choices from the let array.*/
+function optRendered(){
+   var opt = document.createElement("h4")
+   opt.textContent = quesArray[0].options
+   document.querySelector(".choices").append(opt)
+   options.splice
+};
+
+
 
 function startQuiz(){
    document.querySelector(".ques-container").style.display="block"
-   quesRendered()
+   quesRendered(),
+   document.querySelector(".choices").style.display="block"
+   optRendered()
 }
 
 /* function to get question from array of questions. Do I use a loop here?
 */
 
 /*function to create the timer to go down*/
+function startTimer(){
+
+}
 
 /*function for checking answers*/
 /*alert to show correct or incorrect?*/
@@ -97,8 +122,13 @@ function answerWrong() {
 /*Function to save high score*/
 
 /* Function to Retrieve local storage for high score*/
+
+/*event listeners for the button*/
 document.querySelector(".start-button").addEventListener("click", function() {
    console.log("start buttone clicked")
    hideHomePage();
    startQuiz();
+})
+document.querySelector(".choices").addEventListener("click", function() {
+   
 })
