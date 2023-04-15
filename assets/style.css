@@ -1,11 +1,15 @@
+* {
+    text-align: center;
+    color: #232525;
+    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+
 body {
     background-color: #B8E1FF;
 }
 
-.text {
-    text-align: center;
-    color: #232525;
-    font-family:'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+#home {
+    display: flex;
 }
 
 #intro {
@@ -21,12 +25,15 @@ body {
     margin-top: 200px;
 }
 
-
 button:hover {
     background-color: #0075A2;
     cursor: pointer;
 }
 
-.hide {
-    display: none
+#question {
+    display: none;
 }
+
+/* TODO make score/initials component have display: none */
+
+/* TODO style all components and make everything pretty */

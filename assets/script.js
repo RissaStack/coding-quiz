@@ -1,134 +1,122 @@
-//global variables: The let quesArray is used for all of the questions that will be asked during the quiz. They have objects in them to add all the options the user can chose from. 
-let quesArray = [
+ const questions = [
    {
       question: "What does 'HTML' stand for?",
-      options: ["Hypertext Markup Language", "Hypertype Makeup Language", "Hypertone Markup Library", "Hypertext Makeup Library"],
-      correct: "Hypertext Markup Language"
+      choices: ["Hypertext Markup Language", "Hypertype Makeup Language", "Hypertone Markup Library", "Hypertext Makeup Library"],
+      correct: 0
    }, 
    {
       question: "What is a variable?",
-      options: ["A name of a storage location.", "A script.", "An array of informtaion.", "A coding language."],
-      correct: "A name of a storage location."
+      choices: ["A name of a storage location.", "A script.", "An array of informtaion.", "A coding language."],
+      answerIdx: 0
    },
    {
       question: "What character does an HTML tag use?",
-      options: ["''", "[]", "<>", "="],
-      correct: "<>"
+      choices: ["''", "[]", "<>", "="],
+      answerIdx: 2
    },
    {
       question: "What does the 'i' stand for in a for loop?",
-      options: ["italics", "index", "identifier", "item"],
-      correct: "index"
+      choices: ["italics", "index", "identifier", "item"],
+      answerIdx: 1
    },
    {
       question: "What is the box on the outter edge of the box model in CSS?",
-      options: ["Boarder", "Margin", "Padding", "Space"],
-      correct: "Margin"
+      choices: ["Boarder", "Margin", "Padding", "Space"],
+      answerIdx: 1
    },
    {
       question: "In Javascript, how do you write the 'and'?",
-      options: ["\\", "||", "==", "&&"],
-      correct: "&&"
+      choices: ["\\", "||", "==", "&&"],
+      answerIdx: 3
    },
    {
       question: "What answers can you get from a boolean?",
-      options: ["Numeric", "alphabet", "True/False", "Undefined"],
-      correct: "True/False"
+      choices: ["Numeric", "alphabet", "True/False", "Undefined"],
+      answerIdx: 2
    }
 ];
 
-/*This is to create the timer for the quiz*/
-var count = 150;
-var timer = setInterval(function() {
-  console.log(count);
-  count--;
-  if(count === 0) {
-    stopInterval()
-  }
-}, 1000);
+function toggleElementVisibility (id) { 
+   const element = document.getElementById(id);
+   let displayMode = window.getComputedStyle(element, null).display;
 
-var stopInterval = function() {
-  console.log('time is up!');
-  clearInterval(timer);
+   if (displayMode === "none") {
+      displayMode = "flex";
+   } else {
+      displayMode = "none";
+   }
+
+   element.setAttribute('style', `display:${displayMode}`);
+};
+
+function renderQuestion (index) {
+   document.getElementById("question-title").textContent = `Question ${index + 1}`;
+   document.getElementById("question-body").textContent = questions[index].question;
+   for (let choiceIdx=0; choiceIdx < 4; choiceIdx++) {
+      const element = document.getElementById(`choice-${choiceIdx}`)
+      element.textContent = questions[index].choices[choiceIdx];
+      element.addEventListener("click", function() {
+         handleAnswer(choiceIdx, index)
+      })
+   }
 }
 
-//variables to refrence DOM elements
-var pageContainerEl = document.getElementById("page-container"); 
+// TODO create render score/initials function
+// It should:
+// grab score using window.time
+// toggle visibility of question parent
+// toggle visibility of score/initials parent
+// create click event handler for initials submission button
+// which should:
+// function() {
+//    const value = document.getElementById("initials-input").value
+// }
+// add initials and score in key-value pair to JSON file
+// (research using fsrite)
+// call render high scores page package to read/w
 
-var startQuizEl = document.getElementsByClassName("start-quiz");
+// TODO create render high scores page
+// It should:
+// toggle visibility of score/initials
+// toggle visibility of high scores
+// read from JSON file all the high scores
+// iterate over them using Object.keys().forEach and createElement to populate scores
 
-var quesContainerEl = document.getElementById("ques-container");
+function handleAnswer (answer, index) {
+   if (answer === questions[index].answerIdx) {
+      document.getElementById("question-result").textContent = "Correct!";
+   } else {
+      document.getElementById("question-result").textContent = "Wrong";
+      window.time = window.time - 5;
+   }
 
-var questionEl = document.getElementById("question");
+   index++;
 
-var choicesEl = document.getElementById("choices");
-
-var paragraphEl = document.createElement("p")
-
-/* function for starting quiz:
-    - hide the start-quiz section
-    - reveal the ques-container section
-    - start the timer
-    - call to function to get question
-*/
-/*hideHomePage will get rid of the h2, p, and button when start button is clicked.*/
-function hideHomePage(){ 
-   document.querySelector("#home-page").style.display="none"
-};
-
-/*quesRendered shows the first question when the start button is clicked.*/
-function quesRendered(){
-   var questions = document.createElement("h2")
-   questions.textContent = quesArray[0].question
-   document.querySelector(".ques-container").append(questions)
-};
-
-/*optRendered shows the choices from the let array.*/
-function optRendered(){
-   var opt = document.createElement("h4")
-   opt.textContent = quesArray[0].options
-   document.querySelector(".choices").append(opt)
-   options.splice
-};
-
-
-
-function startQuiz(){
-   document.querySelector(".ques-container").style.display="block"
-   quesRendered(),
-   document.querySelector(".choices").style.display="block"
-   optRendered()
+   if (index < questions.length) {
+      renderQuestion(index)
+   } else {
+      // TODO replace console log with score/initials render function
+      console.log("quiz over")
+   }
 }
 
-/* function to get question from array of questions. Do I use a loop here?
-*/
-
-/*function to create the timer to go down*/
-function startTimer(){
-
-}
-
-/*function for checking answers*/
-/*alert to show correct or incorrect?*/
-
-function answerCorrect() {
-   alert("CORRECT")
-};
-
-function answerWrong() {
-   alert("WRONG")
-};
-
-/*Function to save high score*/
-
-/* Function to Retrieve local storage for high score*/
-
-/*event listeners for the button*/
 document.querySelector(".start-button").addEventListener("click", function() {
-   console.log("start buttone clicked")
-   hideHomePage();
-   startQuiz();
-})
-document.querySelector(".choices").addEventListener("click", function() {
-   
-})
+   toggleElementVisibility("home")
+   toggleElementVisibility("question")
+
+   window.time = 10;
+
+   const timer = setInterval(function() {
+      window.time = window.time - 1;
+    
+      if (window.time <= 0) {
+        clearInterval(timer);
+        // TODO replace console log with score/initials render function
+        console.log('quiz over')
+      }
+
+      console.log(window.time);
+    }, 1000);
+
+   renderQuestion(0);
+}) 

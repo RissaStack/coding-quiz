@@ -1,38 +1,65 @@
 <!DOCTYPE html>
 <html lang="en">
-<>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Code Quiz</title>
-    <link rel="stylesheet" href="./assets/style.css"/>
-    <link rel="script" href="./assets/script.js"/>
-</head>
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Code Quiz</title>
+        <link rel="stylesheet" href="./assets/style.css"/>
+        <link rel="script" href="./assets/script.js"/>
+    </head>
 
-<body>
-   <div id="page-container"> <!--This wil be for the entire container.-->
-    <div class="start-quiz"> <!--This is for the first page when you open the link-->
-        <div id="home-page">
-            <h1 class="text">
-                Full Stack Coding Quiz
-            </h1>
-            <p id="intro" class="text">
-                Welcome to the fullstack coding quiz where you can put your knowledge to the test by answering these questions. 
-            </p>
-            <p class="text">
-                Can you beat the clock? 
-            </p>
-            <button class="start-button">
-                Start
-            </button>
-        </div>
-        
-    </div>
-    <div class="ques-container hide"> <!--This container will hold all the questions.-->
-    </div>
-    <button class="choices"></button>
-    </div>
-   </div> 
-   <script src="./assets/script.js"></script>
-</body>
+    <body>
+        <div id="page-container"> <!--This wil be for the entire container.-->
+                <div id="home">
+                    <h1 >
+                        Full Stack Coding Quiz
+                    </h1>
+                    <p id="intro">
+                        Welcome to the fullstack coding quiz where you can put your knowledge to the test by answering these questions. 
+                    </p>
+                    <p>
+                        Can you beat the clock? 
+                    </p>
+                    <button class="start-button">
+                        Start
+                    </button>
+                </div>
+            </div>
+
+            <div id="question">
+                <h1 id="question-title">
+                    Question 1
+                </h1>
+                <h2 id="question-body">
+                    this is the question
+                </h2>
+                <button id="choice-0">
+                    choice 1
+                </button>
+                <button id="choice-1">
+                    choice 2
+                </button>
+                <button id="choice-2">
+                    choice 3
+                </button>
+                <button id="choice-3">
+                    choice 4
+                </button>
+                <h3 id="question-result"></h3>
+            </div>
+
+            <!-- TODO Create score/initials element -->
+            <div>
+                <label></label>
+                <input />
+                <button></button>
+            </div>
+
+            <!-- TODO create high scores page -->
+            <div></div>
+        </div> 
+    </body>
+
+    <script src="./assets/script.js"></script>
 </html>
